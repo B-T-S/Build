@@ -1,12 +1,15 @@
 import os
-
+from flask_socketio import SocketIO
 from flask import Flask, render_template
-from . import settings, controllers
+from . import controllers
+from flask_socketio import SocketIO
+from . import settings
 from .extensions import db
 from .settings import SECRET_KEY
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 
+socketio = SocketIO()
 
 def create_app(config_object=settings):
     ''' create and configure the app'''
@@ -16,6 +19,7 @@ def create_app(config_object=settings):
 #    register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
+    
     return app
 
 '''
@@ -28,9 +32,13 @@ def register_extensions(app):
     return None
 '''
 
+
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(controllers.home.blueprint)
+    from .chat import blueprint as chat_bp
+    app.register_blueprint(chat_bp)
+    socketio.init_app(app)
     return None
 
 
