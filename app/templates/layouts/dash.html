@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: chalky;
+            src: url('../../static/fonts/SqueakyChalkSound.ttf');
+        }
+
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 230px;
+            background-color: #083c77;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            transition: all .3s ease-in-out;
+        }
+
+        .sidebar a.active {
+            background-color: #203955;
+            color: white;
+            padding-left: 40px;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #203955;
+            color: white;
+            padding-left: 40px;
+        }
+
+        div.content {
+            margin-left: 230px;
+            padding: 1px 16px;
+            background: #f9f7f7;
+            min-height: 100vh;
+        }
+
+        .jumbotron{
+            background: #112d4e;
+            color: #f9f7f7;
+        }
+        .spacer{
+            height: 20vh;
+            width: 100%;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .spacer{
+            height: 00vh;
+        }
+            .sidebar a {
+                float: left;
+            }
+
+            div.content {
+                margin-left: 0;
+            }
+        }
+        .bg-cards{
+            background: #dbe2ef;
+            color: black;
+        }
+        .btn-outline-crimson{
+            color: #dbe2ef;
+            background: transparent;
+            border: 1px solid #dbe2ef;
+        }
+        .btn-outline-crimson:hover{
+            background: #dbe2ef;
+            color: black;
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+    </style>
+  </head>
+  <body>
+
+    {% block header %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% include "partials/footer.html" %}
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
