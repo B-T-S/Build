@@ -1,21 +1,28 @@
 import os
-from flask_socketio import SocketIO
 from flask import Flask, render_template
-from . import controllers
-from flask_socketio import SocketIO
-from . import settings
+from . import settings, controllers, chat
 from .extensions import db
 from .settings import SECRET_KEY
+from pusher import pusher
+from flask_cors import CORS
+import simplejson
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 
-socketio = SocketIO()
+
+pusher = pusher.Pusher(
+    app_id = "1067591",
+    key = "f52f5c0ac5302815fdd1",
+    secret = "bbc90254989765f3b7a0",
+    cluster = "ap2",
+    ssl=True)
 
 def create_app(config_object=settings):
     ''' create and configure the app'''
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(config_object)
     app.secret_key=SECRET_KEY
+    cors = CORS(app)
 #    register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
@@ -36,9 +43,10 @@ def register_extensions(app):
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(controllers.home.blueprint)
-    from .chat import blueprint as chat_bp
-    app.register_blueprint(chat_bp)
-    socketio.init_app(app)
+    #registering chat system
+    app.register_blueprint(chat.admin.blueprint)
+    app.register_blueprint(chat.guest.blueprint)
+    app.register_blueprint(chat.pusherauth.blueprint)
     return None
 
 
