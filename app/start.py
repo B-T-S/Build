@@ -13,12 +13,12 @@ def create_app(config_object=settings):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(config_object)
     app.secret_key=SECRET_KEY
-    register_extensions(app)
+#    register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
     return app
 
-
+'''
 def register_extensions(app):
     """Register Flask extensions."""
     db.init_app(app)
@@ -26,7 +26,7 @@ def register_extensions(app):
     with app.app_context():
         db.create_all()
     return None
-
+'''
 
 def register_blueprints(app):
     """Register Flask blueprints."""
