@@ -1,10 +1,22 @@
 {% extends "layouts/layout.html" %}
 
 {% block header %}
-hello
+
+    
 
 {% endblock %}
 
 {% block content %}
+
+    <div class="wrapper">
+        <div class="hero container">
+            <h1 class="display-3">Back to School</h1>
+            <p class="lead">No need to worry about things when you have your <br> own reminder!</p>
+            <div class="ctas">
+                <a href="{{ url_for('home.login') }}"><button type="button" class="btn btn-dark">Get Started</button></a>
+                <button type="button" class="btn btn-outline-dark">Know more?</button>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
